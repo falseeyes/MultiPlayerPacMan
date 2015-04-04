@@ -1,0 +1,78 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="#0099cc"
+    tools:context=".FullscreenActivity">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal|top"
+        android:weightSum="1">
+
+        <pacman.experiment.goodfish.com.pacmangameactivity.util.PacManSurfaceView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/surfaceView"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1.13" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="131dp"
+            android:layout_gravity="center_horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="U"
+                android:id="@+id/upButton"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="L"
+                android:id="@+id/leftButton"
+                android:layout_alignTop="@+id/downButton"
+                android:layout_toStartOf="@+id/upButton" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="R"
+                android:id="@+id/rightButton"
+                android:layout_alignTop="@+id/downButton"
+                android:layout_toEndOf="@+id/upButton" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="D"
+                android:id="@+id/downButton"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New CheckBox"
+                android:id="@+id/checkBox"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_above="@+id/leftButton"
+                android:layout_toStartOf="@+id/upButton" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
