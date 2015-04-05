@@ -55,11 +55,11 @@ public class PacManSurfaceView extends SurfaceView implements SurfaceHolder.Call
         game.requestStop();
     }
 
-    public void moveUp(){game.move(PacManThread.Dir.UP);}
-    public void moveDown(){game.move(PacManThread.Dir.DOWN);}
-    public void moveLeft(){game.move(PacManThread.Dir.LEFT);}
-    public void moveRight(){game.move(PacManThread.Dir.RIGHT);}
-    public void moveStop(){game.move(PacManThread.Dir.STOP);}
+    public void moveUp(){game.move(Character.Dir.UP);}
+    public void moveDown(){game.move(Character.Dir.DOWN);}
+    public void moveLeft(){game.move(Character.Dir.LEFT);}
+    public void moveRight(){game.move(Character.Dir.RIGHT);}
+    public void moveStop(){game.move(Character.Dir.STOP);}
 
     private void tryToDraw(){
         Log.d(TAG, "tryToDraw");

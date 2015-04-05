@@ -1,9 +1,6 @@
 package pacman.experiment.goodfish.com.pacmangameactivity.util;
 
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PointF;
-import android.graphics.RectF;
 import android.util.Log;
 import android.view.SurfaceHolder;
 
@@ -11,13 +8,16 @@ import android.view.SurfaceHolder;
  * Created by jessemacgregor on 3/28/15.
  */
 public class PacManThread extends Thread {
-    public enum Dir {LEFT, RIGHT, UP, DOWN, STOP};
     private final String TAG = "PACMAN_THREAD";
     private SurfaceHolder surfaceHolder;
     private boolean isRunning = false;
     private Maze theMaze = new Maze(30, 33);
-    private PacMan p1 = new PacMan(theMaze, Dir.RIGHT,0xFFFFFF00);
-    private Dir moveDir = Dir.STOP;
+    private Character p1 = new PacMan(theMaze, Character.Dir.RIGHT,0xFFFFFF00);
+    private Character g1 = new Ghost(theMaze, Character.Dir.RIGHT,0xFFFF0000, 1, 1);
+    private Character g2 = new Ghost(theMaze, Character.Dir.RIGHT,0xFFFF7F00, 26, 1);
+    private Character g3 = new Ghost(theMaze, Character.Dir.RIGHT,0xFF00FF00, 1, 28);
+    private Character g4 = new Ghost(theMaze, Character.Dir.RIGHT,0xFF007FFF, 26, 28);
+    private Character.Dir moveDir = Character.Dir.STOP;
 
     PacManThread(SurfaceHolder surfaceHolder){
         this.surfaceHolder = surfaceHolder;
@@ -37,6 +37,10 @@ public class PacManThread extends Thread {
 
         c.drawARGB(0xFF, 0, 0, 0);
         theMaze.draw(c, scale);
+        g1.draw(c, scale);
+        g4.draw(c, scale);
+        g2.draw(c, scale);
+        g3.draw(c, scale);
         p1.draw(c, scale);
     }
 
@@ -44,7 +48,7 @@ public class PacManThread extends Thread {
         isRunning = false;
     }
 
-    public void move(Dir direction){
+    public void move(Character.Dir direction){
         p1.setNextDirection(direction);
     }
 
@@ -55,6 +59,10 @@ public class PacManThread extends Thread {
         isRunning = true;
         while(isRunning){
             p1.move();
+            g1.move();
+            g2.move();
+            g3.move();
+            g4.move();
             try {
                 tryDraw();
                 this.wait(100);
